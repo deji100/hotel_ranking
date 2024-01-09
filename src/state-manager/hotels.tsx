@@ -71,18 +71,28 @@ import { createSlice, current } from "@reduxjs/toolkit";
             state.hotelSearch = payload
         },
 
+        clear_hotel_search: (state) => {
+            state.hotelSearch = ""
+        },
+
         filter_hotels: (state) => {
             const search = current(state).hotelSearch;
-            const reg_obj = new RegExp(search, "i");
-            const filtered_hotels = current(state).hotels.slice().filter(hotel => (
-              reg_obj.test(hotel.name) ||
-              reg_obj.test(hotel.city) ||
-              reg_obj.test(hotel.country) ||
-              reg_obj.test(hotel.address)
-            ));
+            
+            if (search) {
+              const reg_obj = new RegExp(search, "i");
+              const filtered_hotels = current(state).hotels.slice().filter(hotel => (
+                reg_obj.test(hotel.name) ||
+                reg_obj.test(hotel.city) ||
+                reg_obj.test(hotel.country) ||
+                reg_obj.test(hotel.address)
+              ));
 
-            // @ts-expect-error last resort after trying some options
-            state.filteredHotels = filtered_hotels;
+              // @ts-expect-error last resort after trying some options
+              state.filteredHotels = filtered_hotels;
+            }else {
+              state.filteredHotels = [];
+            }
+            
         }
     },
   });
@@ -94,6 +104,8 @@ export const {
   add_new_hotel,
   update_hotel,
   delete_hotel,
+  clear_hotel_search,
   update_hotel_search,
+  filter_hotels,
   fetch_hotels_from_local
 } = HotelSlice.actions;

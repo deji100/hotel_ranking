@@ -19,16 +19,16 @@ type RootState = {
 
 const Hotels = () => {
     // @ts-expect-error hetol slice can't be detected
-    const {hotels, filteredHotels} = useSelector((state: RootState) => state.hotel)
+    const {hotels, filteredHotels, hotelSearch} = useSelector((state: RootState) => state.hotel)
     const [allHotels, setAllHotels] = useState([])
 
     useEffect(() => {
-        if (filteredHotels.length != 0) {
+        if (filteredHotels.length != 0 && hotelSearch) {
             setAllHotels(filteredHotels)
         }else {
             setAllHotels(hotels)
         }
-    }, [filteredHotels, hotels])
+    }, [filteredHotels, hotels, hotelSearch])
 
     if (allHotels === null || allHotels === undefined || allHotels.length < 1) {
         return (

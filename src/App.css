@@ -94,6 +94,37 @@
     transition: all .5s linear;
 }
 
+.sidebar .search-filter-board .search .input label.search {
+    display: none;
+}
+
+.sidebar .search-filter-board .search {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 50px;
+    left: 20px;
+}
+
+.sidebar .search-filter-board .search .icon {
+    color: gray;
+    font-size: 28px;
+}
+
+.sidebar .search-filter-board .search .input input {
+    width: 100%;
+    height: 40px;
+    border-radius: 12px;
+    outline: none;
+    padding-left: 20px;
+    font-size: 16px;
+    position: relative;
+    top: 0px;
+    left: 10px;
+    border: .5px solid rgba(128, 128, 128, 0.766);
+}
+
 .sidebar .panel.active {
     transform: rotateY(180deg);
     transition: all .5s linear;
