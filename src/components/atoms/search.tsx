@@ -17,7 +17,6 @@ const Search: React.FC<SearchProps> = ({collapse}) => {
     }
 
     useEffect(() => {
-        console.log(search)
         if (search) {
             dispatch(update_hotel_search(search))
             dispatch(filter_hotels())
