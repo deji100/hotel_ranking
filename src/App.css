@@ -342,7 +342,7 @@
     }
 
     .side-main .main {
-        width: calc(100% -50px);
+        width: calc(100% - 50px);
         margin-left: 0px;
         padding: 50px 0;
         position: absolute;

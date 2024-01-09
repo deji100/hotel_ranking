@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from "react-router-dom";
 import { add_new_hotel } from "../state-manager/hotels"
 
-interface Data {
+type Data = {
     id: string;
     name: string;
     city: string;

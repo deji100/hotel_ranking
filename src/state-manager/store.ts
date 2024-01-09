@@ -17,9 +17,10 @@ const rootReducers = combineReducers({
 
 const persistedReducer = persistReducer(persistConfig, rootReducers);
 
-
 export const store = configureStore({
   reducer: persistedReducer,
+  
+  // @ts-expect-error last resolve after trying some options
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 

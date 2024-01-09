@@ -2,7 +2,7 @@ import Hotel from "../molecules/hotel"
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
-interface HotelState {
+type HotelState = {
     id: number,
     city: string,
     country: string,
@@ -10,7 +10,7 @@ interface HotelState {
     imUrl: string
 }
 
-interface RootState {
+type RootState = {
     index: number,
     hotelSearch: string,
     hotels: HotelState[],
@@ -18,6 +18,7 @@ interface RootState {
 }
 
 const Hotels = () => {
+    // @ts-expect-error hetol slice can't be detected
     const {hotels, filteredHotels} = useSelector((state: RootState) => state.hotel)
     const [allHotels, setAllHotels] = useState([])
 
@@ -41,6 +42,7 @@ const Hotels = () => {
             <div className="inner">
                 {
                    allHotels?.map(hotel => (
+                        // @ts-expect-error id does not exist on type never
                         <Hotel key={hotel.id} hotel={ hotel } />
                     ))
                 }

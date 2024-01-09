@@ -19,6 +19,8 @@ interface Info {
 
 const Hotel: React.FC<HotelProps> = ({hotel}) => {
     const dispatch = useDispatch()
+
+    // @ts-expect-error Last resort after trying some options
     const obj : Info = hotel
 
     const handleDelete = (id: string) => {

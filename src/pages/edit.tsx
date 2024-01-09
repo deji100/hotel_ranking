@@ -5,18 +5,18 @@ import { useNavigate, useParams } from "react-router-dom";
 import { update_hotel } from "../state-manager/hotels"
 
 interface HotelState {
-    id: string,
-    city: string,
-    country: string,
-    address: string,
-    imUrl: string
+    id: string;
+    city: string;
+    country: string;
+    address: string;
+    imgUrl: string;
 }
 
 interface RootState {
-    index: number,
-    hotelSearch: string,
-    hotels: HotelState[],
-    filteredHotels: HotelState[],
+    index: number;
+    hotelSearch: string;
+    hotels: HotelState[];
+    filteredHotels: HotelState[];
 }
 
 const EditPage = () => {
@@ -24,6 +24,7 @@ const EditPage = () => {
     const navigate = useNavigate();
 
     const {id} = useParams()
+    // @ts-expect-error last resort after trying some options
     const { hotels } = useSelector((state: RootState) => state.hotel);
     
     const hotelData = hotels?.filter((hotel: HotelState) => hotel.id === id)

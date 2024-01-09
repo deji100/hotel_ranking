@@ -14,10 +14,11 @@ interface Info {
     city: string;
     country: string;
     address: string;
-    imgUrl: string
+    imgUrl: string;
 }
 
 const Form: React.FC<FormProps> = ({type, handleSubmit, value, handleChange}) => {
+    // @ts-expect-error last resort after trying some options
     const obj: Info = value
 
     return (

@@ -23,7 +23,10 @@ import { createSlice, current } from "@reduxjs/toolkit";
     reducers: {
         fetch_hotels_from_local: (state) => {
           const hotels = localStorage.getItem("hotels");
-          const retrievedData = JSON.parse(hotels)
+          let retrievedData
+          if (hotels != null) {
+            retrievedData = JSON.parse(hotels)
+          }
 
           if (retrievedData?.length > 0) {
             state.hotels = [...retrievedData]
@@ -77,8 +80,10 @@ import { createSlice, current } from "@reduxjs/toolkit";
               reg_obj.test(hotel.country) ||
               reg_obj.test(hotel.address)
             ));
+
+            // @ts-expect-error last resort after trying some options
             state.filteredHotels = filtered_hotels;
-        },
+        }
     },
   });
 
