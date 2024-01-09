@@ -5,25 +5,35 @@ import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from "react-router-dom";
 import { add_new_hotel } from "../state-manager/hotels"
 
-type Data = {
+type HotelChain = {
+  id: string;
+  hotels: any[];
+};
+
+type Hotel = {
     id: string;
     name: string;
     city: string;
     country: string;
     address: string;
-    imgUrl: string
+    imgUrl: string;
+    chain?: HotelChain;
 }
 
 const CreatePage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [data, setData] = useState<Data>({
+    const [data, setData] = useState<Hotel>({
         id: "",
         name: "",
         city: "",
         country: "",
         address: "",
-        imgUrl: ""
+        imgUrl: "",
+        chain: {
+          id: "",
+          hotels: []
+        }
     })
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,7 +69,15 @@ const CreatePage = () => {
         }
     }else {
         setData({...data, [e.target.name]: e.target.value})
+      }
     }
+
+    const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    // @ts-expect-error last resort after trying some options
+      const selectedValues = Array.from(e.target.selectedOptions, (option: object) => JSON.parse(option.value));
+
+    // @ts-expect-error last resort after trying some options
+      setData((prev) => ({...prev, chain: {...prev.chain, hotels: [...selectedValues]}}))
     }
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -71,7 +89,12 @@ const CreatePage = () => {
 
     return (
         <div className="create-edit">
-            <CreateEditHotel type="Create Hotel" handleChange={handleChange} value={data} handleSubmit={handleSubmit} />
+            <CreateEditHotel 
+              type="Create Hotel" 
+              handleChange={handleChange} 
+              value={data} 
+              handleSelectChange={handleSelectChange}
+              handleSubmit={handleSubmit} />
         </div>
     )
 }

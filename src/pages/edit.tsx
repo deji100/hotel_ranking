@@ -68,6 +68,10 @@ const EditPage = () => {
         }
     }
 
+    const handleSelectChange = () => {
+      console.log("Not applicable")
+      }
+
      const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         dispatch(update_hotel(data));
@@ -80,7 +84,7 @@ const EditPage = () => {
 
     return (
         <div className="create-edit">
-            <CreateEditHotel type="Edit Hotel" handleChange={handleChange} value={data} handleSubmit={handleSubmit}  />
+            <CreateEditHotel type="Edit Hotel" handleChange={handleChange} value={data} handleSelectChange={handleSelectChange} handleSubmit={handleSubmit}  />
         </div>
     )
 }
